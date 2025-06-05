@@ -18,14 +18,25 @@ config({ path: ENV_FILE });
 
 // Create adapter.
 // See https://aka.ms/about-bot-adapter to learn more about how bots work.
+// const adapter = new TeamsAdapter(
+//     {},
+//     new ConfigurationServiceClientCredentialFactory({
+//         MicrosoftAppId: process.env.BOT_ID,
+//         MicrosoftAppPassword: process.env.BOT_PASSWORD,
+//         MicrosoftAppType: 'MultiTenant'
+//     })
+// );
+
 const adapter = new TeamsAdapter(
-    {},
-    new ConfigurationServiceClientCredentialFactory({
-        MicrosoftAppId: process.env.BOT_ID,
-        MicrosoftAppPassword: process.env.BOT_PASSWORD,
-        MicrosoftAppType: 'MultiTenant'
-    })
+  {},
+  new ConfigurationServiceClientCredentialFactory({
+    MicrosoftAppId:       process.env.BOT_ID,
+    MicrosoftAppPassword: process.env.BOT_PASSWORD,
+    MicrosoftAppType:     "SingleTenant",              // <- explicit
+    MicrosoftAppTenantId: process.env.BOT_TENANT_ID    // <- target tenant
+  })
 );
+
 
 // Catch-all for errors.
 const onTurnErrorHandler = async (context: TurnContext, error: any) => {
@@ -85,6 +96,11 @@ app.activity(ActivityTypes.Message, async (context: TurnContext, state: Applicat
 
     // Echo back users request
     await context.sendActivity(`[${count}] you said: ${context.activity.text}`);
+});
+
+server.get('/', (_req, res, next) => {
+    res.send(200, 'OK');
+    next();
 });
 
 // Listen for incoming server requests.

@@ -56,10 +56,12 @@
         "express": "^4.21.1",
         "jsonwebtoken": "^9.0.2",
         "mocha": "10.8.2",
+        "nodemon": "^3.1.10",
         "nyc": "^15.1.0",
         "rimraf": "5.0.10",
         "shx": "^0.4.0",
         "ts-mocha": "10.1.0",
+        "tsx": "^4.19.4",
         "typescript": "~5.5.4"
     },
     "scripts": {
@@ -72,7 +74,9 @@
         "test:debug": "ts-mocha src/**/*.spec.ts --inspect-brk",
         "test:coverage": "nyc --reporter=html --reporter=text --reporter=text-summary npm test",
         "test:compat": "npx api-extractor run --verbose",
-        "watch": "tsc -b --watch"
+        "watch": "tsc -b --watch",
+        "start": "tsx src/index.ts",
+        "dev": "nodemon --exec tsx src/index.ts"
     },
     "files": [
         "_ts3.4",

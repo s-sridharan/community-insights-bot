@@ -5,7 +5,7 @@
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
  */
-
+import "dotenv/config";
 export * from './augmentations';
 export * from './dataSources';
 export * from './embeddings';

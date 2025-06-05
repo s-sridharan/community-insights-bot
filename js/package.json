@@ -7,8 +7,8 @@
         "./samples/**/*"
     ],
     "scripts": {
-        "start": "node src/index.js",          
-        "watch": "nodemon src/index.js",
+        "start": "ts-node packages/src/index.ts",
+        "watch": "nodemon --exec ts-node packages/src/index.ts",
         "dev": "npm run watch",
         "build": "wsrun -e -m -t build",
         "build-docs": "wsrun -e -m build-docs",
