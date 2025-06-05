@@ -7,6 +7,7 @@
         "./samples/**/*"
     ],
     "scripts": {
+        "dev": "npm run watch",
         "build": "wsrun -e -m -t build",
         "build-docs": "wsrun -e -m build-docs",
         "clean": "wsrun -m clean && npx rimraf node_modules",
