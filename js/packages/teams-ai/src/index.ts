@@ -6,6 +6,8 @@
  * Licensed under the MIT License.
  */
 import "dotenv/config";
+import { spawn } from 'child_process';
+import { McpClientPlugin } from '@microsoft/teams.mcpclient';
 export * from './augmentations';
 export * from './dataSources';
 export * from './embeddings';
@@ -32,3 +34,8 @@ export * from './Utilities';
 export * from './authentication/TeamsBotSsoPrompt';
 export * from './TeamsAdapter';
 export { ActionHandler, PredictedDoCommandAndHandler } from './actions';
+
+// start local MCP server for fetching Stack Overflow questions
+spawn('tsx', ['src/mcp/so-server.ts'], { stdio: 'inherit' });
+export const mcp = new McpClientPlugin({ url: 'http://localhost:3001/mcp' });
+export { McpClientPlugin };
