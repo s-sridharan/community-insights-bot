@@ -10,9 +10,20 @@ const resource: ResourceDefinition = {
     async read() {
         const url =
             'https://api.stackexchange.com/2.3/questions?tagged=microsoft-teams&pagesize=20&order=desc&sort=creation&site=stackoverflow&filter=withbody';
-        const response = await fetch(url);
-        const json = await response.json();
-        return JSON.stringify(json.items);
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                console.error(
+                    `Failed to fetch questions: ${response.status} ${response.statusText}`
+                );
+                return JSON.stringify([]);
+            }
+            const json = await response.json();
+            return JSON.stringify(json.items);
+        } catch (err) {
+            console.error('Error fetching questions:', err);
+            return JSON.stringify([]);
+        }
     }
 };
 
