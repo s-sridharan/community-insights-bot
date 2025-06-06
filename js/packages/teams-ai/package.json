@@ -30,8 +30,9 @@
     },
     "dependencies": {
         "@azure/msal-node": "^2.16.1",
-        "@microsoft/teams.mcp": "2.0.0-preview.4",
-        "@microsoft/teams.mcpclient": "2.0.0-preview.4",
+        "@microsoft/teams.ai": "^2.0.0-preview.4",
+        "@microsoft/teams.mcp": "^2.0.0-preview.4",
+        "@microsoft/teams.mcpclient": "^2.0.0-preview.4",
         "@modelcontextprotocol/sdk": "^1.12.1",
         "axios": "^1.9.0",
         "botbuilder-dialogs": "^4.23.2",
