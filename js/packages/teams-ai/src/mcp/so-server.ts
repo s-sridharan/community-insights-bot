@@ -1,5 +1,6 @@
-import { McpServer } from '@microsoft/teams.mcp/server';
+// import { McpServer } from '@microsoft/teams.mcp/server';
 import type { ResourceDefinition } from '@microsoft/teams.mcp';
+import { Server as McpServer } from "@microsoft/teams.mcp";
 
 const server = new McpServer({ port: 3001 });
 

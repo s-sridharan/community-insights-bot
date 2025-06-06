@@ -7,6 +7,7 @@
  */
 import "dotenv/config";
 import { spawn } from 'child_process';
+import { join } from 'path';
 import { McpClientPlugin } from '@microsoft/teams.mcpclient';
 export * from './augmentations';
 export * from './dataSources';

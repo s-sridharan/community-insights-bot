@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+
 // Import required packages
 import { config } from 'dotenv';
 import * as path from 'path';
@@ -11,6 +12,35 @@ import * as restify from 'restify';
 import { ActivityTypes, ConfigurationServiceClientCredentialFactory, MemoryStorage, TurnContext } from 'botbuilder';
 
 import { Application, TurnState, TeamsAdapter } from '@microsoft/teams-ai';
+
+/*********************************************************************
+ *  ONE-OFF AUTH DIAGNOSTIC  – remove after 401 is solved
+ *********************************************************************/
+import fs from "fs";
+import { fileURLToPath } from "url";
+
+//   1 ) Load whichever .env the process can see
+config();   // ← simpler than the custom path
+
+//   2 ) Dump the auth settings we’ll actually use
+const dump = {
+  PWD: process.cwd(),
+  ENV_FOUND: fs.existsSync(".env"),
+  BOT_ID: process.env.BOT_ID,
+  BOT_ID_LEN: process.env.BOT_ID?.length || 0,
+  BOT_PASSWORD_LEN: process.env.BOT_PASSWORD?.length || 0,
+  BOT_TENANT_ID: process.env.BOT_TENANT_ID,
+  APP_TYPE: "SingleTenant",
+};
+console.table(dump);
+
+//   3 ) Double-check manifest & endpoint
+console.log(
+  "Messaging endpoint expected:",
+  `https://${process.env.PUBLIC_HOST || "<codespace-hash>-3978.app.github.dev"}/api/messages`
+);
+/*********************************************************************/
+
 
 // Read botFilePath and botFileSecret from .env file.
 const ENV_FILE = path.join(__dirname, '..', '.env');
